@@ -2,13 +2,13 @@ const board = document.getElementById("tablero");
 
 // Llista d'imatges (assegura't de tenir aquestes imatges a la teva carpeta)
 const images = [
-    'sources/biggest_biggest.jpeg', 'sources/camping_kolog.jpeg', 'sources/duo_kologs.jpg', 'sources/fat_kolog.jpeg', 
-    'sources/found_kolog.jpeg', 'sources/happy_kolog.jpeg', 'sources/HESTU_kolog.jpeg', 'sources/kolog_link.jpg',
-    'sources/timido_kolog.jpeg', 'sources/tired_kolog.jpeg', 'sources/violinista_kolog.jpeg', 'sources/we_kolog.jpeg',
+    'sources/escudo_zelda.jpeg', 'sources/mano_link_zelda.jpeg', 'sources/kolog_zelda.jpeg', 'sources/sword_zelda.jpeg', 
+    'sources/epic_zelda.jpeg', 'sources/link_zelda.jpeg', 'sources/kolog_found_zelda.jpeg', 'sources/force_zelda.jpeg',
+    'sources/triforce_zelda.jpeg', 'sources/world_zelda.jpeg', 'sources/linkreal_zelda.jpeg', 'sources/zelda.jpeg',
 
-    'sources/biggest_biggest.jpeg', 'sources/camping_kolog.jpeg', 'sources/duo_kologs.jpg', 'sources/fat_kolog.jpeg', 
-    'sources/found_kolog.jpeg', 'sources/happy_kolog.jpeg', 'sources/HESTU_kolog.jpeg', 'sources/kolog_link.jpg',
-    'sources/timido_kolog.jpeg', 'sources/tired_kolog.jpeg', 'sources/violinista_kolog.jpeg', 'sources/we_kolog.jpeg'
+    'sources/escudo_zelda.jpeg', 'sources/mano_link_zelda.jpeg', 'sources/kolog_zelda.jpeg', 'sources/sword_zelda.jpeg', 
+    'sources/epic_zelda.jpeg', 'sources/link_zelda.jpeg', 'sources/kolog_found_zelda.jpeg', 'sources/force_zelda.jpeg',
+    'sources/triforce_zelda.jpeg', 'sources/world_zelda.jpeg', 'sources/linkreal_zelda.jpeg', 'sources/zelda.jpeg'
 ];
 
 // Funció per barrejar l'array de cartes

@@ -8,19 +8,24 @@ body {
     height: 100vh; /* Asegúrate que el body ocupe todo el alto de la ventana */
     margin: 0; /* Elimina el margen predeterminado del body */
 }
+
 .board {
     display: grid;
-    grid-template-columns: repeat(6, 700px); /* 6 columnas */
-    grid-template-rows: repeat(4, 800px); /* 4 filas */
-    gap: 10px; /* Espacio entre las cartas */
+    grid-template-columns: repeat(6, 1fr); /* 6 columnas flexibles */
+    grid-template-rows: repeat(4, auto); /* Altura automática */
+    column-gap: 1px;
+    row-gap: 8px;
     justify-content: center;
     margin: 50px auto; /* Centra el tablero en la página */
+    max-width: 70%; /* Asegura que el tablero no exceda el ancho de la pantalla */
 }
 
 .card {
-    width: 700px; /* Ancho de la carta */
-    height: 800px; /* Altura de la carta */
-    background-image: url('sources/portada.jpeg'); /* Imagen de fondo de la carta */
+    width: 55%; /* Ancho de la carta proporcional al contenedor */
+    aspect-ratio: 3 / 4; /* Mantiene la proporción 3:4 (más larga que ancha) */
+    max-width: 450px; /* Limita el ancho máximo a 250px para reducir el tamaño */
+    max-height: 550px; /* Limita la altura máxima a 350px */
+    background-image: url('sources/portada_cartas.jpeg'); /* Imagen de fondo de la carta */
     background-size: cover; /* Asegúrate que la imagen cubra toda la carta */
     background-position: center; /* Centra la imagen de fondo */
     display: flex;
@@ -32,6 +37,7 @@ body {
     overflow: hidden; /* Esconde el contenido que sobrepasa la carta */
     transition: transform 0.2s; /* Efecto de transición al interactuar */
     border-radius: 15px; /* Bordes redondeados */
+    margin: 0 auto; /* Elimina márgenes adicionales en las cartas */
 }
 
 .card:hover {
