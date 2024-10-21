@@ -1,9 +1,10 @@
+// Declaro las variables y constantes
 const board = document.getElementById("tablero");
 const botonJuego = document.getElementById("botonJuego");
 const tiempoDisplay = document.getElementById("tiempo"); // Elemento para mostrar el tiempo
-const selectorDificultad = document.getElementById("dificultad"); // Selector de dificultad
+const dificultadSelect = document.getElementById("dificultad"); // Elemento select de dificultad
 let juegoIniciado = false;
-let tiempo; // Variable para almacenar el tiempo total
+let tiempo = 0; // Variable para almacenar el tiempo restante
 let cronometro; // Variable para almacenar el setInterval
 
 const images = [
@@ -30,6 +31,7 @@ let shuffledImages = shuffle(images);
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
+let matchCount = 0; // Contador de coincidencias
 
 // Función para crear las cartas
 function crearCartas() {
@@ -60,7 +62,16 @@ function crearCartas() {
                 if (firstCard.firstChild.src === secondCard.firstChild.src) {
                     firstCard.classList.add("matched");
                     secondCard.classList.add("matched");
+                    matchCount += 1; // Incrementar el contador de coincidencias
                     resetBoard();
+
+                    // Verificar si se ha ganado el juego
+                    if (matchCount === (shuffledImages.length / 2)) { // Hay que dividir por 2 porque hay pares
+                        setTimeout(() => {
+                            alert("¡Felicidades! Has ganado el juego.");
+                        }, 500); // Retardo para que se muestre el mensaje después de un match
+                        reiniciarCronometro();
+                    }
                 } else {
                     firstCard.classList.add("unmatched");
                     secondCard.classList.add("unmatched");
@@ -85,27 +96,20 @@ function resetBoard() {
 
 // Función para iniciar el cronómetro
 function iniciarCronometro() {
-    tiempo = parseInt(selectorDificultad.value); // Obtener el tiempo basado en la dificultad seleccionada
-    tiempoDisplay.textContent = formatTime(tiempo); // Mostrar el tiempo inicial
-
+    // Obtener el tiempo según la dificultad seleccionada
+    tiempo = parseInt(dificultadSelect.value); // Establecer el tiempo desde la dificultad
     cronometro = setInterval(() => {
-        tiempo--;
-        tiempoDisplay.textContent = formatTime(tiempo); // Actualizar el display del tiempo
-
-        // Comprobar si el tiempo ha terminado
         if (tiempo <= 0) {
             clearInterval(cronometro);
-            alert("¡El tiempo se ha agotado!"); // Alerta cuando el tiempo se agota
+            alert("¡Tiempo agotado! Has perdido el juego.");
             reiniciarJuego();
+            return;
         }
+        tiempo--; // Disminuir el tiempo
+        const minutos = String(Math.floor(tiempo / 60)).padStart(2, '0');
+        const segundos = String(tiempo % 60).padStart(2, '0');
+        tiempoDisplay.textContent = `${minutos}:${segundos}`; // Actualizar el display del tiempo
     }, 1000);
-}
-
-// Función para formatear el tiempo a MM:SS
-function formatTime(seconds) {
-    const minutos = String(Math.floor(seconds / 60)).padStart(2, '0');
-    const segundos = String(seconds % 60).padStart(2, '0');
-    return `${minutos}:${segundos}`;
 }
 
 // Función para reiniciar el cronómetro
@@ -116,8 +120,9 @@ function reiniciarCronometro() {
 
 // Función para reiniciar el juego
 function reiniciarJuego() {
-    juegoIniciado = false;
+    juegoIniciado = false; // Reiniciar cronómetro al reiniciar el juego
     reiniciarCronometro();
+    matchCount = 0; // Reiniciar el contador de coincidencias
     botonJuego.textContent = "Iniciar";
     board.classList.remove("activo");
     crearCartas();
@@ -128,7 +133,7 @@ botonJuego.addEventListener("click", () => {
     if (juegoIniciado) {
         const confirmacion = confirm("Ya has iniciado el juego. ¿Deseas reiniciarlo?");
         if (confirmacion) {
-            reiniciarJuego();
+            reiniciarJuego(); // Llama a la función para reiniciar el juego
         }
     } else {
         juegoIniciado = true; // Iniciar cronómetro al iniciar el juego

@@ -35,11 +35,14 @@ body {
     font-weight: bold;
     flex-grow: 1; /* Permite que el cronómetro se ajuste al tamaño */
     text-align: center; /* Alinea el cronómetro en el centro */
+    margin-right: 10px;
+    margin-left: 14%;
 }
 
 /* Botón de juego */
 .boton_juego {
     flex-shrink: 0; /* Evita que el botón se reduzca */
+    margin-left: 50px;
 }
 
 .boton_juego button {
@@ -72,6 +75,7 @@ body {
 /* Selector de dificultad */
 .dificultad_selector {
     flex-shrink: 0;
+    margin-left: 50px;
 }
 
 .dificultad_selector label {
@@ -127,7 +131,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 4px solid black;
+    border: 6px solid black;
     border-radius: 15px;
     margin: 0 auto;
     transition: transform 0.2s, border-color 0.3s;
@@ -142,6 +146,7 @@ body {
     height: 100%;
     object-fit: cover;
     display: none;
+    border-radius: 15px;
 }
 
 .card.flipped img {
